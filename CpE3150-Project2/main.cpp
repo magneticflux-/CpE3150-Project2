@@ -6,11 +6,14 @@
  */ 
 
 #include <avr/io.h>
+#include "note.h"
+#include "play_note.h"
 
 
 int main(void)
 {
     /* Replace with your application code */
+	DDRE = (1<<PORTE4);//speaker
     while (1) 
     {
     }
