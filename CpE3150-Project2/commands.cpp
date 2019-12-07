@@ -2,8 +2,6 @@
 #include <string.h>
 #include "commands.h"
 
-#define BUFFER_SIZE 512
-
 void initUSART()
 {
 	UBRR1 = UBRR;
@@ -30,36 +28,34 @@ void transmit(const char * data)
 	}
 }
 
+void shellPrompt(const char * data)
+{
+	transmit("> ");
+	transmit(data);
+	transmit("\n");
+}
+
 void handleCommand(const char * data)
 {
-	// Extra padding for response data
-	char response[BUFFER_SIZE * 3] = {};
-	
 	// Echo command to mimic a shell
-	strcpy(response, "> ");
-	strcat(response, data);
-	strcat(response, "\n");
+	shellPrompt(data);
 	
 	// Ping test response
 	if(strcmp(data, "ping") == 0)
 	{
-		strcat(response, "pong\n");
-		
-		transmit(response);
+		transmit("pong\n");
 	}
 	// Song 1
 	else if(strcmp(data, "song1") == 0)
 	{
-		strcat(response, "Played song 1!");
-		
-		transmit(response);
+		transmit("Playing song 1...\n");
+		transmit("Played song 1!\n");
 	}
 	// Song 2
 	else if(strcmp(data, "song2") == 0)
 	{
-		strcat(response, "Played song 2!");
-		
-		transmit(response);
+		transmit("Playing song 2...\n");
+		transmit("Played song 2!\n");
 	}
 	// Help response
 	else
@@ -67,20 +63,18 @@ void handleCommand(const char * data)
 		// If unknown command, prefix the issue
 		if(strcmp(data, "help") != 0)
 		{
-			strcat(response, "Unknown command \"");
-			strcat(response, data);
-			strcat(response, "\"\n");
+			transmit("Unknown command \"");
+			transmit(data);
+			transmit("\"\n");
 		}
 		
-		strcat(response,
+		transmit(
 		"Available commands are:\n"
 		"ping  - responds\n"
 		"song1 - plays song 1\n"
 		"song2 - plays song 2\n"
 		"help  - displays this text\n"
 		);
-		
-		transmit(response);
 	}
 }
 
