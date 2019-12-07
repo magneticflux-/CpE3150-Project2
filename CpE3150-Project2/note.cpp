@@ -1,4 +1,4 @@
-﻿#include "note.h"
+#include "note.h"
 
 note::note(const char note_in[3])
 {
@@ -6,38 +6,38 @@ note::note(const char note_in[3])
 	const float KEY_MULTIPLIER = 1.059463; //2^(1/12)
 	//sets key at value for that note in octave 1
 	switch(note_in[0])
-	{		
+	{
 		case('C'):
-			key = 4;
-			break;
-				
+		key = 4;
+		break;
+		
 		case('D'):
-			key = 6;
-			break;
-				
+		key = 6;
+		break;
+		
 		case('E'):
-			key = 8;
-			break;
-			
+		key = 8;
+		break;
+		
 		case('F'):
-			key = 9;
-			break;
-				
+		key = 9;
+		break;
+		
 		case('G'):
-			key = 11;
-			break;
-				
+		key = 11;
+		break;
+		
 		case('A'):
-			key = 13;
-			break;
-			
+		key = 13;
+		break;
+		
 		case('B'):
-			key = 15;
-			break;
-			
+		key = 15;
+		break;
+		
 		default:
-			key = 4;
-			break;
+		key = 4;
+		break;
 	}
 	
 	//checking for sharp or flat sign in second position of note
@@ -48,10 +48,10 @@ note::note(const char note_in[3])
 		
 		//incrementing one key for sharp and decrementing for flat
 		if(note_in[1] == '#')
-			key++;
+		key++;
 		
 		else if(note_in[1] == 'b')
-			key--;
+		key--;
 	}
 	
 	//adjusting for octave if no sharp or flat sign present
@@ -62,7 +62,7 @@ note::note(const char note_in[3])
 	}
 	
 	//n-49 part of equation
-	const int exponent = key - 49;
+	/*const int exponent = key - 49;
 	float temp = KEY_MULTIPLIER;
 	
 	//2^(1/12)^(n-49)
@@ -87,12 +87,23 @@ note::note(const char note_in[3])
 	else
 	{
 		temp = 1;
-	}
+	}*/
 	
-	frequency = temp * 440;
+	frequency = get_n_root(key - 49) * 440;
 }
 
 float note::get_frequency()
 {
 	return frequency;
+}
+
+float note::get_n_root(int n)
+{
+	if(n < 0)
+		return (1 / roots[n * -1]);
+	
+	else
+		return roots[n];
+	
+
 }
