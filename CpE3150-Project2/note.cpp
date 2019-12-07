@@ -2,9 +2,9 @@
 
 note::note(const char note_in[3])
 {
-	float test_freq = 1.0;
-	int key = 0;
-	const float KEY_MULTIPLIER = 1.059463;
+	int key = 0; //numbered piano key n for equation frequency f(n) = 440 * 2^((n-49)/12)
+	const float KEY_MULTIPLIER = 1.059463; //2^(1/12)
+	//sets key at value for that note in octave 1
 	switch(note_in[0])
 	{		
 		case('C'):
@@ -32,28 +32,32 @@ note::note(const char note_in[3])
 			break;
 	}
 	
-	//int test3 = note_in[1];
+	//checking for sharp or flat sign in second position of note
 	if(note_in[1] == '#' || note_in[1] == 'b')
 	{
+		//adjusting for octave, note_in[2] is ASCII value not actual number
 		key += (((note_in[2] - 49)) * 12);
-	}
-	
-	else
-	{
-		key += (((note_in[1] - 49)) * 12);
-	}
-	
-	if(note_in[2] != '\0')
-	{
+		
+		//incrementing one key for sharp and decrementing for flat
 		if(note_in[1] == '#')
 			key++;
 		
 		else if(note_in[1] == 'b')
 			key--;
 	}
+	
+	//adjusting for octave
+	else
+	{
+		//note_in[1] is ASCII value not actual number
+		key += (((note_in[1] - 49)) * 12);
+	}
+	
+	//n-49 part of equation
 	const int exponent = key - 49;
 	float temp = KEY_MULTIPLIER;
 	
+	//2^(1/12)^(n-49)
 	if(((exponent) < 0))
 	{
 		for(int i = 0; i > (exponent + 1); i--)
