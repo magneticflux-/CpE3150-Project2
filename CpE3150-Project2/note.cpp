@@ -3,7 +3,7 @@
 note::note(const char note_in[3])
 {
 	int key = 0; //numbered piano key n for equation frequency f(n) = 440 * 2^((n-49)/12)
-	const float KEY_MULTIPLIER = 1.059463; //2^(1/12)
+	
 	//sets key at value for that note in octave 1
 	switch(note_in[0])
 	{
@@ -61,33 +61,6 @@ note::note(const char note_in[3])
 		key += (((note_in[1] - 49)) * 12);
 	}
 	
-	//n-49 part of equation
-	/*const int exponent = key - 49;
-	float temp = KEY_MULTIPLIER;
-	
-	//2^(1/12)^(n-49)
-	if(((exponent) < 0))
-	{
-		for(int i = 0; i > (exponent + 1); i--)
-		{
-			temp *= KEY_MULTIPLIER;
-		}
-		
-		temp = 1 / temp;
-	}
-	
-	else if((exponent) > 0)
-	{
-		for(int i = 0; i < (exponent - 1); i++)
-		{
-			temp *= KEY_MULTIPLIER;
-		}
-	}
-	
-	else
-	{
-		temp = 1;
-	}*/
 	
 	frequency = get_n_root(key - 49) * 440;
 }
