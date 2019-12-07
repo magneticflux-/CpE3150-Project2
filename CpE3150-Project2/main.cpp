@@ -6,7 +6,8 @@
  */ 
 
 #include <avr/io.h>
-
+#include "note.h"
+static note C4("C4");
 
 int main(void)
 {
