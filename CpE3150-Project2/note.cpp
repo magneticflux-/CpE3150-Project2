@@ -27,6 +27,14 @@ note::note(const char note_in[3])
 			key = 11;
 			break;
 				
+		case('A'):
+			key = 13;
+			break;
+			
+		case('B'):
+			key = 15;
+			break;
+			
 		default:
 			key = 4;
 			break;
@@ -46,7 +54,7 @@ note::note(const char note_in[3])
 			key--;
 	}
 	
-	//adjusting for octave
+	//adjusting for octave if no sharp or flat sign present
 	else
 	{
 		//note_in[1] is ASCII value not actual number
