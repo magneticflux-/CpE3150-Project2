@@ -10,7 +10,13 @@
 #include "commands.h"
 #include "note.h"
 
-static note C4("C4");
+const static note C("C4");
+const static note D("D4");
+const static note E("E4");
+const static note F("F4");
+const static note G("G4");
+const static note A("A4");
+const static note B("B4");
 
 void initInterrupts()
 {
