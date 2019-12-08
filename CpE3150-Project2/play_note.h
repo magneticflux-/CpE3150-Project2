@@ -1,9 +1,9 @@
 /*
- * IncFile1.h
- *
- * Created: 12/7/2019 10:36:16 AM
- *  Author: snspzv
- */ 
+* IncFile1.h
+*
+* Created: 12/7/2019 10:36:16 AM
+*  Author: snspzv
+*/
 
 
 #ifndef PLAY_NOTE_H
@@ -14,4 +14,4 @@
 void play_note(float freq, int counts);
 ISR(TIMER1_COMPA_vect);
 
-#endif 
+#endif
