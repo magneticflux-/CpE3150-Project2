@@ -67,7 +67,7 @@ note::note(const char note_in[3])
 	frequency = 440 * get_nth_root(key - 69);
 }
 
-float note::get_frequency()
+float note::get_frequency() const
 {
 	return frequency;
 }

@@ -9,6 +9,7 @@
 #include <avr/interrupt.h>
 #include "commands.h"
 #include "note.h"
+#include "play_note.h"
 
 const static note C("C4");
 const static note D("D4");
@@ -25,12 +26,13 @@ void initInterrupts()
 
 int main(void)
 {
-	// Enable speaker
-	//DDRE = 0b00010000;
-	
 	initUSART();
 	
+	initSound();
+	
 	initInterrupts();
+
+	//play_note(note("C7").get_frequency(), 16);
 
 	while (true)
 	{

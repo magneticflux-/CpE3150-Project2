@@ -193,6 +193,12 @@
     <Compile Include="note.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="play_note.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="play_note.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
