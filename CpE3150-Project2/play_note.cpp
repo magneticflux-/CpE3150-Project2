@@ -4,33 +4,46 @@
 * Created: 12/7/2019 10:36:30 AM
 *  Author: snspzv
 */
+#include <avr/io.h>
 #include "play_note.h"
 
+#define TIMER1_FREQ 16000000
+
+void initSound()
+{
+	// Enable speaker
+	DDRE = (1 << PORTE4);
+}
 
 void play_note(float freq, int counts)
 {
-	sei();
-	const double TIMER_PERIOD_A = 0.000000063;
-	TCCR1A = 0x00; //normal operation/CTC
-	TCCR1B = (1<<WGM12);//CTC mode
-	OCR1A = (1/freq) / TIMER_PERIOD_A;//timer for speaker wave
+	// Make it sound right (?)
+	freq *= 8;
 	
-	TCCR3A = 0x00;//normal operation/CTC
-	TCCR3B = (1<<CS32) | (1<<WGM32);//256 prescaler and CTC mode
-	OCR3A = 15625;//quarter second
+	// Timer1
+	TCCR1A = 0x00;
+	TCCR1B = (1 << WGM12) | (1 << CS11); // CTC mode, 1 prescale
+	OCR1A = TIMER1_FREQ / (freq * 2); // timer counts per output toggle
+	TIMSK1 = (1 << OCIE1A); // enable interrupts on compare with OCR1A
+
+	// Timer3
+	TCCR3A = 0x00;
+	TCCR3B = (1 << WGM32) | (1 << CS32); // CTC mode, 256 prescale
+	OCR3A = 7813; // 1/8 second @ 16MHz / 256
 	
-	TIMSK1 = (1<<OCIE1A);//enable interrupts on compare with OCR1A
-	for(int i = 0; i < counts; i++)
+	for(uint8_t i = 0; i < counts; i++)
 	{
-		while(TIFR3 ^ (1<<OCF3A));
+		// Wait for match
+		while(!(TIFR3 & (1 << OCF3A)));
+		// Clear match
+		TIFR3 |= (1 << OCF3A);
 	}
 	
-	TCCR1B = 0x00;//turn off
-	TCCR3B = 0x00;//turn off
-	cli();
+	TCCR1B = 0x00; // turn off
+	TCCR3B = 0x00; // turn off
 }
 
 ISR(TIMER1_COMPA_vect)
 {
-	PORTE ^= (1<<PORTE4);//toggle speaker
+	PORTE ^= (1 << PORTE4); // toggle speaker
 }

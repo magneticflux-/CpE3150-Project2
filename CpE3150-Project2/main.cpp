@@ -26,12 +26,13 @@ void initInterrupts()
 
 int main(void)
 {
-	// Enable speaker
-	DDRE = (1 << PORTE4);
-	
 	initUSART();
 	
+	initSound();
+	
 	initInterrupts();
+
+	//play_note(note("C7").get_frequency(), 16);
 
 	while (true)
 	{

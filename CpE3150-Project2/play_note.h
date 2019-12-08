@@ -5,13 +5,13 @@
 *  Author: snspzv
 */
 
+#pragma once
 
-#ifndef PLAY_NOTE_H
-#define PLAY_NOTE_H
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-void play_note(float freq, int counts);
-ISR(TIMER1_COMPA_vect);
+void initSound();
 
-#endif
+void play_note(float freq, int counts);
+
+ISR(TIMER1_COMPA_vect);
