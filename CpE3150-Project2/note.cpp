@@ -1,42 +1,41 @@
+#include <avr/io.h>
 #include "note.h"
 
 note::note(const char note_in[3])
 {
-	int key = 0; //numbered piano key n for equation frequency f(n) = 440 * 2^((n-49)/12)
+	// Reference: https://en.wikipedia.org/wiki/Scientific_pitch_notation#Table_of_note_frequencies
+
+	uint8_t key = 0; // MIDI note number
 	
 	//sets key at value for that note in octave 1
 	switch(note_in[0])
 	{
 		case('C'):
-		key = 4;
+		key = 12;
 		break;
 		
 		case('D'):
-		key = 6;
+		key = 14;
 		break;
 		
 		case('E'):
-		key = 8;
+		key = 16;
 		break;
 		
 		case('F'):
-		key = 9;
+		key = 17;
 		break;
 		
 		case('G'):
-		key = 11;
+		key = 19;
 		break;
 		
 		case('A'):
-		key = 13;
+		key = 21;
 		break;
 		
 		case('B'):
-		key = 15;
-		break;
-		
-		default:
-		key = 4;
+		key = 23;
 		break;
 	}
 	
@@ -44,25 +43,28 @@ note::note(const char note_in[3])
 	if(note_in[1] == '#' || note_in[1] == 'b')
 	{
 		//adjusting for octave, note_in[2] is ASCII value not actual number
-		key += (((note_in[2] - 49)) * 12);
+		key += (note_in[2] - 48) * 12;
 		
 		//incrementing one key for sharp and decrementing for flat
 		if(note_in[1] == '#')
-		key++;
+		{
+			key++;
+		}
 		
 		else if(note_in[1] == 'b')
-		key--;
+		{
+			key--;
+		}
 	}
-	
 	//adjusting for octave if no sharp or flat sign present
 	else
 	{
 		//note_in[1] is ASCII value not actual number
-		key += (((note_in[1] - 49)) * 12);
+		key += (note_in[1] - 48) * 12;
 	}
 	
-	
-	frequency = get_nth_root(key) * 440;
+	// Convert from MIDI number to frequency
+	frequency = 440 * get_nth_root(key - 69);
 }
 
 float note::get_frequency()
@@ -72,15 +74,15 @@ float note::get_frequency()
 
 
 /**
- * \brief Computes 2^(n/12)
- * 
- * \param n the exponent factor
- * 
- * \return float the result
- */
+* \brief Computes 2^(n/12)
+*
+* \param n the exponent factor
+*
+* \return float the result
+*/
 float get_nth_root(const int16_t n)
 {
-	const static float[] ROOTS = {
+	const static float ROOTS[] = {
 		ROOT_0,
 		ROOT_1,
 		ROOT_2,

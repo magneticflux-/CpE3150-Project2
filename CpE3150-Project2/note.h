@@ -25,6 +25,8 @@ class note
 		
 	private:
 		float frequency;
-	};
+};
+
+float get_nth_root(const int16_t n);
 	
 #endif
