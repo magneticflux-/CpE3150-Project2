@@ -62,7 +62,7 @@ note::note(const char note_in[3])
 	}
 	
 	
-	frequency = get_n_root(key - 49) * 440;
+	frequency = get_nth_root(key) * 440;
 }
 
 float note::get_frequency()
@@ -70,13 +70,41 @@ float note::get_frequency()
 	return frequency;
 }
 
-float note::get_n_root(int n)
-{
-	if(n < 0)
-		return (1 / roots[n * -1]);
-	
-	else
-		return roots[n];
-	
 
+/**
+ * \brief Computes 2^(n/12)
+ * 
+ * \param n the exponent factor
+ * 
+ * \return float the result
+ */
+float get_nth_root(const int16_t n)
+{
+	const static float[] ROOTS = {
+		ROOT_0,
+		ROOT_1,
+		ROOT_2,
+		ROOT_3,
+		ROOT_4,
+		ROOT_5,
+		ROOT_6,
+		ROOT_7,
+		ROOT_8,
+		ROOT_9,
+		ROOT_10,
+		ROOT_11
+	};
+
+	if (n >= 12)
+	{
+		return 2 * get_nth_root(n - 12);
+	}
+	else if (n >= 0)
+	{
+		return ROOTS[n];
+	}
+	else
+	{
+		return 1 / get_nth_root(-n);
+	}
 }
