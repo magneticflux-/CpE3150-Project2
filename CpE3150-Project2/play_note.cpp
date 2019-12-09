@@ -23,12 +23,12 @@ void initSound()
 void delay(int counts, int cpb, int bpm)
 {
 	// Clock ticks per count
-	//    tpc = (seconds per count)  / (seconds per tick)
-	//    tpc = (ticks per second)   / (counts per second)
-	//    tpc = freq                 / (counts per minute / 60)
-	//    tpc = (freq * 60)          / (counts per minute)
-	//    tpc = (freq * 60)          / (counts per beat * beats per minute)
-	#define tpc (TIMER3_FREQ * 60.0) / (cpb * bpm);
+	//        tpc = (seconds per count)  / (seconds per tick)
+	//        tpc = (ticks per second)   / (counts per second)
+	//        tpc = freq                 / (counts per minute / 60)
+	//        tpc = (freq * 60)          / (counts per minute)
+	//        tpc = (freq * 60)          / (counts per beat * beats per minute)
+	const int tpc = (TIMER3_FREQ * 60.0) / (cpb * bpm);
 	
 	// Timer3
 	TCCR3A = 0x00;
@@ -90,13 +90,13 @@ void play_note(float freq, int counts, int cpb, int bpm)
 	counts *= 3;
 	cpb *= 3;
 	
-	start_note(freq, 1 / 100.0);
+	start_note(freq, 1 / 2.0);
 	
-	delay(counts - 2, cpb, bpm);
+	delay(counts - 1, cpb, bpm);
 	
 	start_note(freq, 0.0);
 	
-	delay(2, cpb, bpm);
+	delay(1, cpb, bpm);
 	
 	stop_note();
 }
