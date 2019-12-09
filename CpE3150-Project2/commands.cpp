@@ -2,7 +2,7 @@
 #include <string.h>
 #include "commands.h"
 
-void initUSART()
+void init_usart()
 {
 	UBRR1 = UBRR;
 	UCSR1B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);

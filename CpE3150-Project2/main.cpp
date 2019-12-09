@@ -10,6 +10,7 @@
 #include "commands.h"
 #include "note.h"
 #include "play_note.h"
+#include "led.h"
 
 const static note C("C5");
 const static note D("D5");
@@ -19,47 +20,20 @@ const static note G("G5");
 const static note A("A5");
 const static note B("B5");
 
-void initInterrupts()
+void init_interrupts()
 {
 	sei();
 }
 
-void initLEDS()
-{
-	DDRD |= 0b00111111;
-	PORTD |= 0b00111111;
-	
-	DDRE |= (1<<PORTE5);
-	DDRE |= (1<<PORTE5);
-}
-
 int main(void)
 {
-	initUSART();
+	init_usart();
 	
-	initSound();
+	init_sound();
 	
-	initInterrupts();
+	init_leds();
 	
-	initLEDS();
-
-	play_note("C5", 4);
-	play_note("D5", 4);
-	play_note("E5", 4);
-	play_note("F5", 4);
-	play_note("G5", 4);
-	play_note("A5", 4);
-	play_note("B5", 4);
-	play_note("C6", 4);
-	play_note("D6", 4);
-	play_note("C6", 4);
-	play_note("B5", 4);
-	play_note("A5", 4);
-	play_note("G5", 4);
-	play_note("F5", 4);
-	play_note("E5", 4);
-	play_note("D5", 4);
-	play_note("C5", 4 + 16);
+	init_interrupts();
 
 	while (true)
 	{

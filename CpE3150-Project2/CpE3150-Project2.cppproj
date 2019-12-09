@@ -195,10 +195,10 @@
     <Compile Include="commands.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LED_control.cpp">
+    <Compile Include="led.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LED_control.h">
+    <Compile Include="led.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">

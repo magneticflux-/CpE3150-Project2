@@ -10,12 +10,11 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "note.h"
-#include "LED_control.h"
 
 #define DEFAULT_CPB 16
 #define DEFAULT_BPM 120
 
-void initSound();
+void init_sound();
 
 void delay(int counts, int cpb, int bpm);
 
