@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 * IncFile1.h
 *
@@ -5,13 +7,21 @@
 *  Author: snspzv
 */
 
-#pragma once
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "note.h"
+
+#define DEFAULT_CPB 16
+#define DEFAULT_BPM 120
 
 void initSound();
 
-void play_note(float freq, int counts);
+void delay(int counts, int cpb, int bpm);
+
+void play_note(const char note_name[3], int counts, int cpb = DEFAULT_CPB, int bpm = DEFAULT_BPM);
+
+void play_note(note note, int counts, int cpb = DEFAULT_CPB, int bpm = DEFAULT_BPM);
+
+void play_note(float freq, int counts, int cpb = DEFAULT_CPB, int bpm = DEFAULT_BPM);
 
 ISR(TIMER1_COMPA_vect);
