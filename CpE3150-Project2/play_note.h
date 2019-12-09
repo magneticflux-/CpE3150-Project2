@@ -12,6 +12,6 @@
 
 void initSound();
 
-void play_note(float freq, int counts);
+void play_note(float freq, float counts, int bpm);
 
 ISR(TIMER1_COMPA_vect);

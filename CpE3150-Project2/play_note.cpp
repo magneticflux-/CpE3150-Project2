@@ -15,7 +15,7 @@ void initSound()
 	DDRE = (1 << PORTE4);
 }
 
-void play_note(float freq, int counts)
+void play_note(float freq, float counts, int bpm)
 {
 	// Make it sound right (?)
 	freq *= 8;
@@ -29,15 +29,11 @@ void play_note(float freq, int counts)
 	// Timer3
 	TCCR3A = 0x00;
 	TCCR3B = (1 << WGM32) | (1 << CS32); // CTC mode, 256 prescale
-	OCR3A = 7813; // 1/8 second @ 16MHz / 256
+	OCR3A = (bpm / 240) * counts; //bpm / 60 sec = bps, bps / 4 = length of quarter note (works for 4/4 time)
 	
-	for(uint8_t i = 0; i < counts; i++)
-	{
-		// Wait for match
-		while(!(TIFR3 & (1 << OCF3A)));
-		// Clear match
-		TIFR3 |= (1 << OCF3A);
-	}
+	while(!(TIFR3 & (1 << OCF3A)));
+
+	TIFR3 |= (1 << OCF3A);
 	
 	TCCR1B = 0x00; // turn off
 	TCCR3B = 0x00; // turn off
