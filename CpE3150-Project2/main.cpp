@@ -11,13 +11,13 @@
 #include "note.h"
 #include "play_note.h"
 
-const static note C("C4");
-const static note D("D4");
-const static note E("E4");
-const static note F("F4");
-const static note G("G4");
-const static note A("A4");
-const static note B("B4");
+const static note C("C5");
+const static note D("D5");
+const static note E("E5");
+const static note F("F5");
+const static note G("G5");
+const static note A("A5");
+const static note B("B5");
 
 void initInterrupts()
 {
@@ -43,13 +43,24 @@ int main(void)
 	
 	initLEDS();
 
-	note test("C4");
-	play_note(test.get_frequency(), 16, test.get_note_letter());
+	play_note("C5", 4);
+	play_note("D5", 4);
+	play_note("E5", 4);
+	play_note("F5", 4);
+	play_note("G5", 4);
+	play_note("A5", 4);
+	play_note("B5", 4);
+	play_note("C6", 4);
+	play_note("D6", 4);
+	play_note("C6", 4);
+	play_note("B5", 4);
+	play_note("A5", 4);
+	play_note("G5", 4);
+	play_note("F5", 4);
+	play_note("E5", 4);
+	play_note("D5", 4);
+	play_note("C5", 4 + 16);
 
-	if(true)
-	{
-		DDRD  = 0x00;
-	}
 	while (true)
 	{
 	}
