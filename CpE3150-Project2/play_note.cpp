@@ -46,6 +46,35 @@ void delay(int counts, int cpb, int bpm)
 	TCCR3B = 0x00; // turn off
 }
 
+void start_note(float freq, float duty)
+{
+	// Make it sound right (?)
+	// Found by comparison to known tones
+	// Probably adjusting for speaker and square wave characteristics
+	freq *= 8;
+	
+	// Timer1
+	TCCR1A = (1 << WGM11); // Fast PWM, TOP = ICR3
+	TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11); // CTC mode, 1 prescale
+	
+	// ticks per PWM period
+	const float tpp = TIMER1_FREQ / freq;
+	ICR1 = tpp;
+	
+	OCR1A = tpp * duty;
+	
+	// OCIE1A and TOIE1 interrupt enable
+	// OCIE1A controls duty cycle
+	// TOIE1 controls overall period
+	TIMSK1 = (1 << OCIE1A) | (1 << TOIE1);
+}
+
+void stop_note()
+{
+	TCCR1B = 0x00; // turn off
+}
+
+
 void play_note(const char note_name[3], int counts, int cpb, int bpm)
 {
 	play_note(note(note_name), counts, cpb, bpm);
@@ -58,23 +87,26 @@ void play_note(note note, int counts, int cpb, int bpm)
 
 void play_note(float freq, int counts, int cpb, int bpm)
 {
-	// Make it sound right (?)
-	// Found by comparison to known tones
-	// Probably adjusting for speaker and square wave characteristics
-	freq *= 8;
+	counts *= 3;
+	cpb *= 3;
 	
-	// Timer1
-	TCCR1A = 0x00;
-	TCCR1B = (1 << WGM12) | (1 << CS11); // CTC mode, 1 prescale
-	OCR1A = TIMER1_FREQ / (freq * 2); // timer counts per output toggle
-	TIMSK1 = (1 << OCIE1A); // enable interrupts on compare with OCR1A
+	start_note(freq, 1 / 100.0);
 	
-	delay(counts, cpb, bpm);
+	delay(counts - 2, cpb, bpm);
 	
-	TCCR1B = 0x00; // turn off
+	start_note(freq, 0.0);
+	
+	delay(2, cpb, bpm);
+	
+	stop_note();
 }
 
 ISR(TIMER1_COMPA_vect)
 {
-	PORTE ^= (1 << PORTE4); // toggle speaker
+	PORTE |= (1 << PORTE4); // Speaker high
+}
+
+ISR(TIMER1_OVF_vect)
+{
+	PORTE &= !(1 << PORTE4); // Speaker low
 }

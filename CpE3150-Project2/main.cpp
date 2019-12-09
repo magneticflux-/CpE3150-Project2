@@ -52,5 +52,7 @@ int main(void)
 
 	while (true)
 	{
+		//play_note("C5", 16);
+		//delay(16);
 	}
 }
