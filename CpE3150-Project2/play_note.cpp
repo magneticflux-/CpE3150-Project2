@@ -29,7 +29,7 @@ void play_note(float freq, float counts, int bpm)
 	// Timer3
 	TCCR3A = 0x00;
 	TCCR3B = (1 << WGM32) | (1 << CS32); // CTC mode, 256 prescale
-	OCR3A = (bpm / 240) * counts; //bpm / 60 sec = bps, bps / 4 = length of quarter note (works for 4/4 time)
+	OCR3A = ((1 / (bpm / 60)) * counts) / 0.000016; //bpm / 60 sec = bps, 1/bps = seconds per count
 	
 	while(!(TIFR3 & (1 << OCF3A)));
 
