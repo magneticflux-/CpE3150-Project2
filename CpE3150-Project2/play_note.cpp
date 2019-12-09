@@ -15,7 +15,7 @@ void initSound()
 	DDRE = (1 << PORTE4);
 }
 
-void play_note(float freq, int counts)
+void play_note(float freq, int counts, char note_letter)
 {
 	// Make it sound right (?)
 	freq *= 8;
@@ -25,6 +25,9 @@ void play_note(float freq, int counts)
 	TCCR1B = (1 << WGM12) | (1 << CS11); // CTC mode, 1 prescale
 	OCR1A = TIMER1_FREQ / (freq * 2); // timer counts per output toggle
 	TIMSK1 = (1 << OCIE1A); // enable interrupts on compare with OCR1A
+
+	//Turn on LED
+	changeLEDstate(note_letter);
 
 	// Timer3
 	TCCR3A = 0x00;
@@ -41,6 +44,8 @@ void play_note(float freq, int counts)
 	
 	TCCR1B = 0x00; // turn off
 	TCCR3B = 0x00; // turn off
+	
+	changeLEDstate(note_letter);
 }
 
 ISR(TIMER1_COMPA_vect)

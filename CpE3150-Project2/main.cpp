@@ -24,6 +24,15 @@ void initInterrupts()
 	sei();
 }
 
+void initLEDS()
+{
+	DDRD |= 0b00111111;
+	PORTD |= 0b00111111;
+	
+	DDRE |= (1<<PORTE5);
+	DDRE |= (1<<PORTE5);
+}
+
 int main(void)
 {
 	initUSART();
@@ -31,9 +40,16 @@ int main(void)
 	initSound();
 	
 	initInterrupts();
+	
+	initLEDS();
 
-	//play_note(note("C7").get_frequency(), 16);
+	note test("C4");
+	play_note(test.get_frequency(), 16, test.get_note_letter());
 
+	if(true)
+	{
+		DDRD  = 0x00;
+	}
 	while (true)
 	{
 	}

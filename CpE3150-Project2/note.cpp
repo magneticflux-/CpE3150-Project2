@@ -7,6 +7,8 @@ note::note(const char note_in[3])
 
 	uint8_t key = 0; // MIDI note number
 	
+	note_letter = note_in[0];
+	
 	//sets key at value for that note in octave 1
 	switch(note_in[0])
 	{
@@ -109,4 +111,10 @@ float get_nth_root(const int16_t n)
 	{
 		return 1 / get_nth_root(-n);
 	}
+}
+
+
+char note::get_note_letter() const
+{
+	return note_letter;
 }
