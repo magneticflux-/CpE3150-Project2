@@ -76,7 +76,7 @@ void handleCommand(const char * data)
 			cbpm[i] = data[i + 4];
 		}
 		
-		ibpm = (100 * (cbpm[0] - 48)) + (10 * (cbpm[1] - 48)) + cbpm[2]; 
+		ibpm = (100 * (cbpm[0] - 48)) + (10 * (cbpm[1] - 48)) + cbpm[2];
 		transmit("Playing Ode to Joy\n");
 		play_ode(ibpm);
 		transmit("Played Ode to Joy\n");

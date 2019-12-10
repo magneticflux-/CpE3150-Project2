@@ -195,6 +195,9 @@
     <Compile Include="commands.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="common_notes.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="keyboard.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -220,6 +223,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="play_note.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="presets.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="presets.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
