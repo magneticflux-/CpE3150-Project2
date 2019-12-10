@@ -36,6 +36,8 @@ int main(void)
 
 	init_interrupts();
 	
+	init_keyboard();
+	
 	#define MIN_COUNTS 8
 	
 	play_note("C5", MIN_COUNTS);
@@ -58,6 +60,6 @@ int main(void)
 
 	while (true)
 	{
-		keyboard();
+		check_keyboard();
 	}
 }
