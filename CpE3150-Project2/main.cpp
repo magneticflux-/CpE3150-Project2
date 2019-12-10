@@ -27,7 +27,7 @@ void init_interrupts()
 
 int main(void)
 {
-	init_usart();
+	enable_usart();
 	
 	init_sound();
 	
@@ -35,7 +35,7 @@ int main(void)
 
 	init_interrupts();
 	
-	#define MIN_COUNTS 3
+	#define MIN_COUNTS 8
 	
 	play_note("C5", MIN_COUNTS);
 	play_note("D5", MIN_COUNTS);
