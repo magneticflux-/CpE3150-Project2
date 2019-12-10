@@ -51,9 +51,6 @@ void shellPrompt(const char * data)
 
 void handleCommand(const char * data)
 {
-	char cbpm [3] = {0};
-	int ibpm = 0;
-	
 	// Echo command to mimic a shell
 	shellPrompt(data);
 	
@@ -71,6 +68,9 @@ void handleCommand(const char * data)
 	// Song 1
 	else if(strncmp(data, "ode", 3) == 0 && strlen(data) >= 7)
 	{
+		char cbpm [3] = {0};
+		int ibpm = 0;
+
 		for(int i = 0; i < 3; i++)
 		{
 			cbpm[i] = data[i + 4];
@@ -104,6 +104,7 @@ void handleCommand(const char * data)
 		"ping      - responds\n"
 		"scale     - plays a scale\n"
 		"ode <bpm> - plays Ode to Joy\n"
+		"jingle    - plays Jingle Bells\n"
 		"help      - displays this text\n"
 		);
 	}
