@@ -82,10 +82,11 @@ void handleCommand(const char * data)
 		transmit("Played Ode to Joy\n");
 	}
 	// Song 2
-	else if(strcmp(data, "song2") == 0)
+	else if(strcmp(data, "jingle") == 0)
 	{
-		transmit("Playing song 2...\n");
-		transmit("Played song 2!\n");
+		transmit("Playing Jingle Bells\n");
+		play_jingle();
+		transmit("Played Jingle Bells!\n");
 	}
 	// Help response
 	else

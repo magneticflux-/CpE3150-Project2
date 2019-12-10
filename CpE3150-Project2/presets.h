@@ -9,4 +9,6 @@
 
 void play_ode(int bpm);
 
+void play_jingle();
+
 void play_scale();
