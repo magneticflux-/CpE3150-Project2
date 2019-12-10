@@ -1,5 +1,6 @@
 #pragma once
 
+#include <inttypes.h>
 #include <string.h>
 
 #define ROOT_0 1

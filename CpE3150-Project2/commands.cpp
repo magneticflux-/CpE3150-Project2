@@ -49,6 +49,7 @@ void handleCommand(const char * data)
 	// Song 1
 	else if(strcmp(data, "Ode to Joy\n") == 0)
 	{
+		//transmit("At how many bpm?");
 		transmit("Playing Ode to Joy\n");
 		play_ode();
 		transmit("Played Ode to Joy\n");
