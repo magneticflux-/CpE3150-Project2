@@ -8,16 +8,17 @@
 #include <avr/io.h>
 #include "play_note.h"
 #include "note.h"
+#include "led.h"
 
 #define CPU_FREQ 16000000
 
 #define TIMER1_FREQ (CPU_FREQ / 1)
 #define TIMER3_FREQ (CPU_FREQ / 64)
 
-void initSound()
+void init_sound()
 {
 	// Enable speaker
-	DDRE = (1 << PORTE4);
+	DDRE |= (1 << PORTE4);
 }
 
 void delay(int counts, int cpb, int bpm)
@@ -82,7 +83,12 @@ void play_note(const char note_name[3], int counts, int cpb, int bpm)
 
 void play_note(note note, int counts, int cpb, int bpm)
 {
+	// Toggle LED
+	toggle_led(note.get_note_letter());
 	play_note(note.get_frequency(), counts, cpb, bpm);
+
+	// Toggle LED
+	toggle_led(note.get_note_letter());
 }
 
 void play_note(float freq, int counts, int cpb, int bpm)

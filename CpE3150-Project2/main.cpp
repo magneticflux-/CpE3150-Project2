@@ -10,6 +10,7 @@
 #include "commands.h"
 #include "note.h"
 #include "play_note.h"
+#include "led.h"
 
 const static note C("C5");
 const static note D("D5");
@@ -19,18 +20,20 @@ const static note G("G5");
 const static note A("A5");
 const static note B("B5");
 
-void initInterrupts()
+void init_interrupts()
 {
 	sei();
 }
 
 int main(void)
 {
-	initUSART();
+	init_usart();
 	
-	initSound();
+	init_sound();
 	
-	initInterrupts();
+	init_leds();
+
+	init_interrupts();
 	
 	#define MIN_COUNTS 3
 	

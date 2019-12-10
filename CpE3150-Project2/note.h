@@ -22,9 +22,11 @@ class note
 	public:
 	note(const char note_in[3]);
 	float get_frequency() const;
+	char get_note_letter() const;
 	
 	private:
 	float frequency;
+	char note_letter;
 };
 
 float get_nth_root(const int16_t n);
