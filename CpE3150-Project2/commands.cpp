@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <string.h>
 #include "commands.h"
+#include "presets.h"
 
 void initUSART()
 {
@@ -46,10 +47,11 @@ void handleCommand(const char * data)
 		transmit("pong\n");
 	}
 	// Song 1
-	else if(strcmp(data, "song1") == 0)
+	else if(strcmp(data, "Ode to Joy\n") == 0)
 	{
-		transmit("Playing song 1...\n");
-		transmit("Played song 1!\n");
+		transmit("Playing Ode to Joy\n");
+		play_ode();
+		transmit("Played Ode to Joy\n");
 	}
 	// Song 2
 	else if(strcmp(data, "song2") == 0)

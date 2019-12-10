@@ -10,14 +10,8 @@
 #include "commands.h"
 #include "note.h"
 #include "play_note.h"
+#include "common_notes.h"
 
-const static note C("C5");
-const static note D("D5");
-const static note E("E5");
-const static note F("F5");
-const static note G("G5");
-const static note A("A5");
-const static note B("B5");
 
 void initInterrupts()
 {
