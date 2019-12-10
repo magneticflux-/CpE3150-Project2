@@ -21,7 +21,7 @@ void init_interrupts()
 
 int main(void)
 {
-	enable_usart();
+	init_usart();
 	
 	init_sound();
 	

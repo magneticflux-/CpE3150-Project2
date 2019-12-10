@@ -1,3 +1,5 @@
+#pragma once
+
 /* 
 * presets.h
 *
@@ -5,16 +7,6 @@
 * Author: snspz
 */
 
-
-#ifndef __PRESETS_H__
-#define __PRESETS_H__
-
-#include "note.h"
-#include "play_note.h"
-#include "common_notes.h"
-
 void play_ode(int bpm);
 
 void play_scale();
-
-#endif //__PRESETS_H__

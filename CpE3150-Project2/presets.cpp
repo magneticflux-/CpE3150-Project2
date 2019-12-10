@@ -5,74 +5,73 @@
 * Author: snspz
 */
 
-
-#include "presets.h"
-
+#include "play_note.h"
+#include "common_notes.h"
 
 void play_ode(int bpm)
 {
-	play_note(E, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(F, 4,16,bpm);
-	play_note(G, 4,16,bpm);
-	play_note(G, 4,16,bpm);
-	play_note(F, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(E, 6,16,bpm);
-	play_note(D, 2,16,bpm);
-	play_note(D, 8,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(F, 4,16,bpm);
-	play_note(G, 4,16,bpm);
-	play_note(G, 4,16,bpm);
-	play_note(F, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(D, 6,16,bpm);
-	play_note(C, 2,16,bpm);
-	play_note(C, 8,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(E, 2,16,bpm);
-	play_note(F, 2,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(E, 2,16,bpm);
-	play_note(F, 2,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	delay(4, 16, bpm);
-	play_note(E, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(F, 4,16,bpm);
-	play_note(G, 4,16,bpm);
-	play_note(F, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(C, 4,16,bpm);
-	play_note(D, 4,16,bpm);
-	play_note(E, 4,16,bpm);
-	play_note(D, 6,16,bpm);
-	play_note(C, 2,16,bpm);
-	play_note(C, 8,16,bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(F, 4, 16, bpm);
+	play_note(G, 4, 16, bpm);
+	play_note(G, 4, 16, bpm);
+	play_note(F, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(E, 6, 16, bpm);
+	play_note(D, 2, 16, bpm);
+	play_note(D, 8, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(F, 4, 16, bpm);
+	play_note(G, 4, 16, bpm);
+	play_note(G, 4, 16, bpm);
+	play_note(F, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(D, 6, 16, bpm);
+	play_note(C, 2, 16, bpm);
+	play_note(C, 8, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(E, 2, 16, bpm);
+	play_note(F, 2, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(E, 2, 16, bpm);
+	play_note(F, 2, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note("G4", 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(F, 4, 16, bpm);
+	play_note(G, 4, 16, bpm);
+	play_note(F, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(C, 4, 16, bpm);
+	play_note(D, 4, 16, bpm);
+	play_note(E, 4, 16, bpm);
+	play_note(D, 6, 16, bpm);
+	play_note(C, 2, 16, bpm);
+	play_note(C, 8, 16, bpm);
 }
 
 void play_scale()

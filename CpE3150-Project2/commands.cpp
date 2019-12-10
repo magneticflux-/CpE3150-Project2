@@ -3,18 +3,24 @@
 #include "commands.h"
 #include "presets.h"
 
-void enable_usart()
+#define UCSR1B_ENABLED ((1 << RXEN) | (1 << TXEN) | (1 << RXCIE))
+
+void init_usart()
 {
 	UBRR1 = UBRR;
-	UCSR1B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
 	UCSR1C = (1 << UCSZ0) | (1 << UCSZ1);
+	
+	enable_usart();
 }
 
-void disable_usart()
+void enable_usart()
 {
-	UBRR1 = 0;
-	UCSR1B = 0;
-	UCSR1C = 0;
+	UCSR1B |= UCSR1B_ENABLED;
+}
+
+bool disable_usart()
+{
+	UCSR1B &= ~UCSR1B_ENABLED;
 }
 
 void transmit(const char data)
@@ -63,7 +69,7 @@ void handleCommand(const char * data)
 		transmit("Done playing!\n");
 	}
 	// Song 1
-	else if(strncmp(data, "ode", 3) == 0)
+	else if(strncmp(data, "ode", 3) == 0 && strlen(data) >= 7)
 	{
 		for(int i = 0; i < 3; i++)
 		{
@@ -94,10 +100,10 @@ void handleCommand(const char * data)
 		
 		transmit(
 		"Available commands are:\n"
-		"ping  - responds\n"
-		"song1 - plays song 1\n"
-		"song2 - plays song 2\n"
-		"help  - displays this text\n"
+		"ping      - responds\n"
+		"scale     - plays a scale\n"
+		"ode <bpm> - plays Ode to Joy\n"
+		"help      - displays this text\n"
 		);
 	}
 }
