@@ -18,7 +18,7 @@ void enable_usart()
 	UCSR1B |= UCSR1B_ENABLED;
 }
 
-bool disable_usart()
+void disable_usart()
 {
 	UCSR1B &= ~UCSR1B_ENABLED;
 }

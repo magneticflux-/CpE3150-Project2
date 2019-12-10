@@ -11,7 +11,7 @@ void init_usart();
 
 void enable_usart();
 
-bool disable_usart();
+void disable_usart();
 
 void transmit(uint8_t data);
 
