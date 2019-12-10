@@ -16,7 +16,11 @@
 
 void init_sound();
 
-void delay(int counts, int cpb, int bpm);
+void delay(int counts, int cpb = DEFAULT_CPB, int bpm = DEFAULT_BPM);
+
+void start_note(float freq, float duty = 0.5);
+
+void stop_note();
 
 void play_note(const char note_name[3], int counts, int cpb = DEFAULT_CPB, int bpm = DEFAULT_BPM);
 
@@ -25,3 +29,5 @@ void play_note(note note, int counts, int cpb = DEFAULT_CPB, int bpm = DEFAULT_B
 void play_note(float freq, int counts, int cpb = DEFAULT_CPB, int bpm = DEFAULT_BPM);
 
 ISR(TIMER1_COMPA_vect);
+
+ISR(TIMER1_OVF_vect);
