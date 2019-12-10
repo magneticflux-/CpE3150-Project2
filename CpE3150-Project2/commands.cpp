@@ -59,17 +59,25 @@ void handleCommand(const char * data)
 	// Song 1
 	else if(strncmp(data, "ode", 3) == 0)
 	{
-		
-
-		for(int i = 0; i < 3; i++)
+		if(strlen(data) < 5)
 		{
-			cbpm[i] = data[i + 4];
+			transmit("Playing Ode to Joy\n");
+			play_ode(120);
+			transmit("Played Ode to Joy\n");
 		}
+
+		else
+		{
+			for(int i = 0; i < 3; i++)
+			{
+				cbpm[i] = data[i + 4];
+			}
 		
-		ibpm = (100 * (cbpm[0] - 48)) + (10 * (cbpm[1] - 48)) + cbpm[2]; 
-		transmit("Playing Ode to Joy\n");
-		play_ode(ibpm);
-		transmit("Played Ode to Joy\n");
+			ibpm = (100 * (cbpm[0] - 48)) + (10 * (cbpm[1] - 48)) + cbpm[2]; 
+			transmit("Playing Ode to Joy\n");
+			play_ode(ibpm);
+			transmit("Played Ode to Joy\n");
+		}
 	}
 	// Song 2
 	else if(strcmp(data, "song2") == 0)
