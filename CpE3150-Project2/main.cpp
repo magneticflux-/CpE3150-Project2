@@ -11,6 +11,7 @@
 #include "note.h"
 #include "play_note.h"
 #include "led.h"
+#include "keyboard.h"
 #include "common_notes.h"
 
 
@@ -28,8 +29,11 @@ int main(void)
 	init_leds();
 
 	init_interrupts();
-
+	
+	init_keyboard();
+	
 	while (true)
 	{
+		check_keyboard();
 	}
 }
