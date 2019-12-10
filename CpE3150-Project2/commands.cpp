@@ -45,6 +45,9 @@ void shellPrompt(const char * data)
 
 void handleCommand(const char * data)
 {
+	char cbpm [3] = {0};
+	int ibpm = 0;
+	
 	// Echo command to mimic a shell
 	shellPrompt(data);
 	
@@ -54,12 +57,18 @@ void handleCommand(const char * data)
 		transmit("pong\n");
 	}
 	// Song 1
-	else if(strcmp(data, "ode") == 0)
+	else if(strncmp(data, "ode", 3) == 0)
 	{
-		//transmit("At how many bpm?");
+		
 
+		for(int i = 0; i < 3; i++)
+		{
+			cbpm[i] = data[i + 4];
+		}
+		
+		ibpm = (100 * (cbpm[0] - 48)) + (10 * (cbpm[1] - 48)) + cbpm[2]; 
 		transmit("Playing Ode to Joy\n");
-		play_ode();
+		play_ode(ibpm);
 		transmit("Played Ode to Joy\n");
 	}
 	// Song 2

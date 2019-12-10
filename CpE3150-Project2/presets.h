@@ -13,7 +13,7 @@
 #include "play_note.h"
 #include "common_notes.h"
 
-void play_ode();
 void play_jingle();
+void play_ode(int bpm);
 
 #endif //__PRESETS_H__
