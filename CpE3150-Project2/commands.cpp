@@ -54,9 +54,10 @@ void handleCommand(const char * data)
 		transmit("pong\n");
 	}
 	// Song 1
-	else if(strcmp(data, "Ode to Joy\n") == 0)
+	else if(strcmp(data, "ode") == 0)
 	{
 		//transmit("At how many bpm?");
+
 		transmit("Playing Ode to Joy\n");
 		play_ode();
 		transmit("Played Ode to Joy\n");
@@ -103,7 +104,9 @@ ISR(USART1_RX_vect)
 		char * const newline = strstr(buffer, "\r\n");
 		*newline = '\0';
 		
+		sei();
 		handleCommand(buffer);
+		cli();
 		
 		// Clear
 		strcpy(buffer, "");
