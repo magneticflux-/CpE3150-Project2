@@ -14,5 +14,6 @@
 #include "common_notes.h"
 
 void play_ode();
+void play_jingle();
 
 #endif //__PRESETS_H__
