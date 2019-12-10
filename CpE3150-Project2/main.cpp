@@ -11,6 +11,7 @@
 #include "note.h"
 #include "play_note.h"
 #include "led.h"
+#include "keyboard.h"
 
 const static note C("C5");
 const static note D("D5");
@@ -35,6 +36,8 @@ int main(void)
 
 	init_interrupts();
 	
+	init_keyboard();
+	
 	#define MIN_COUNTS 8
 	
 	play_note("C5", MIN_COUNTS);
@@ -57,5 +60,6 @@ int main(void)
 
 	while (true)
 	{
+		check_keyboard();
 	}
 }
