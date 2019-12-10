@@ -74,66 +74,80 @@ void play_ode(int bpm)
 	play_note(C, 8, 16, bpm);
 }
 
-void play_jingle()
+void play_jingle(char up_or_down)
 {
-	play_note(E,4);
-	play_note(E,4);
-	play_note(E,8);
+	char octave;
+	if(up_or_down == '+')
+	{
+		octave = '6';
+	}
+	else if(up_or_down == '-')
+	{
+		octave = '4';
+	}
+	else
+	{
+		octave = '5';
+	}
+	
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",8);
 	delay(4,16,120);
-	play_note(E,4);
-	play_note(E,4);
-	play_note(E,8);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",8);
 	delay(4,16,120);
-	play_note(E,4);
-	play_note(G,4);
-	play_note(C,4);
-	play_note(D,2);
-	play_note(E,16);
+	play_note("'E'+octave",4);
+	play_note("'G'+octave",4);
+	play_note("'C'+octave",4);
+	play_note("'D'+octave",2);
+	play_note("'E'+octave",16);
 	delay(4,16,120);
-	play_note(F,4);
-	play_note(F,4);
-	play_note(F,4);
-	play_note(F,2);
-	play_note(F,4);
-	play_note(E,4);
-	play_note(E,4);
-	play_note(E,2);
-	play_note(E,2);
-	play_note(E,4);
-	play_note(D,4);
-	play_note(D,4);
-	play_note(E,4);
-	play_note(D,8);
-	play_note(G,8);
+	play_note("'F'+octave",4);
+	play_note("'F'+octave",4);
+	play_note("'F'+octave",4);
+	play_note("'F'+octave",2);
+	play_note("'F'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",2);
+	play_note("'E'+octave",2);
+	play_note("'E'+octave",4);
+	play_note("'D'+octave",4);
+	play_note("'D'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'D'+octave",8);
+	play_note("'G'+octave",8);
 	delay(4,16,120);
-	play_note(E,4);
-	play_note(E,4);
-	play_note(E,8);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",8);
 	delay(4,16,120);
-	play_note(E,4);
-	play_note(E,4);
-	play_note(E,8);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",8);
 	delay(4,16,120);
-	play_note(E,4);
-	play_note(G,4);
-	play_note(C,4);
-	play_note(D,2);
-	play_note(E,16);
+	play_note("'E'+octave",4);
+	play_note("'G'+octave",4);
+	play_note("'C'+octave",4);
+	play_note("'D'+octave",2);
+	play_note("'E'+octave",16);
 	delay(4,16,120);
-	play_note(F,4);
-	play_note(F,4);
-	play_note(F,4);
-	play_note(F,4);
-	play_note(F,4);
-	play_note(E,4);
-	play_note(E,4);
-	play_note(E,2);
-	play_note(E,2);
-	play_note(G,4);
-	play_note(G,4);
-	play_note(F,4);
-	play_note(D,4);
-	play_note(C,16);
+	play_note("'F'+octave",4);
+	play_note("'F'+octave",4);
+	play_note("'F'+octave",4);
+	play_note("'F'+octave",4);
+	play_note("'F'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",4);
+	play_note("'E'+octave",2);
+	play_note("'E'+octave",2);
+	play_note("'G'+octave",4);
+	play_note("'G'+octave",4);
+	play_note("'F'+octave",4);
+	play_note("'D'+octave",4);
+	play_note("'C'+octave",16);
 }
 
 void play_scale()
