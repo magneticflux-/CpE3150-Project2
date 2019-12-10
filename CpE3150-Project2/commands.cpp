@@ -82,11 +82,20 @@ void handleCommand(const char * data)
 		transmit("Played Ode to Joy\n");
 	}
 	// Song 2
-	else if(strcmp(data, "jingle") == 0)
+	else if(strncmp(data, "jingle", 5) == 0)
 	{
-		transmit("Playing Jingle Bells\n");
-		play_jingle();
-		transmit("Played Jingle Bells!\n");
+		if(strlen(data) < 7)
+		{
+			transmit("Playing Jingle Bells\n");
+			play_jingle('5');
+			transmit("Played Jingle Bells!\n");
+		}
+		else
+		{
+			transmit("Playing Jingle Bells\n");
+			play_jingle(data[7]);
+			transmit("Played Jingle Bells!\n");
+		};
 	}
 	// Help response
 	else

@@ -9,6 +9,6 @@
 
 void play_ode(int bpm);
 
-void play_jingle();
+void play_jingle(char up_or_down);
 
 void play_scale();
