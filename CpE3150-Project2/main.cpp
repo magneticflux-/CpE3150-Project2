@@ -12,14 +12,8 @@
 #include "play_note.h"
 #include "led.h"
 #include "keyboard.h"
+#include "common_notes.h"
 
-const static note C("C5");
-const static note D("D5");
-const static note E("E5");
-const static note F("F5");
-const static note G("G5");
-const static note A("A5");
-const static note B("B5");
 
 void init_interrupts()
 {
@@ -28,7 +22,7 @@ void init_interrupts()
 
 int main(void)
 {
-	enable_usart();
+	init_usart();
 	
 	init_sound();
 	
@@ -38,26 +32,6 @@ int main(void)
 	
 	init_keyboard();
 	
-	#define MIN_COUNTS 8
-	
-	play_note("C5", MIN_COUNTS);
-	play_note("D5", MIN_COUNTS);
-	play_note("E5", MIN_COUNTS);
-	play_note("F5", MIN_COUNTS);
-	play_note("G5", MIN_COUNTS);
-	play_note("A5", MIN_COUNTS);
-	play_note("B5", MIN_COUNTS);
-	play_note("C6", MIN_COUNTS);
-	play_note("D6", MIN_COUNTS);
-	play_note("C6", MIN_COUNTS);
-	play_note("B5", MIN_COUNTS);
-	play_note("A5", MIN_COUNTS);
-	play_note("G5", MIN_COUNTS);
-	play_note("F5", MIN_COUNTS);
-	play_note("E5", MIN_COUNTS);
-	play_note("D5", MIN_COUNTS);
-	play_note("C5", MIN_COUNTS * 5);
-
 	while (true)
 	{
 		check_keyboard();

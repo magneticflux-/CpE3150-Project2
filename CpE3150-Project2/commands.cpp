@@ -1,19 +1,26 @@
 #include <avr/io.h>
 #include <string.h>
 #include "commands.h"
+#include "presets.h"
+
+#define UCSR1B_ENABLED ((1 << RXEN) | (1 << TXEN) | (1 << RXCIE))
+
+void init_usart()
+{
+	UBRR1 = UBRR;
+	UCSR1C = (1 << UCSZ0) | (1 << UCSZ1);
+	
+	enable_usart();
+}
 
 void enable_usart()
 {
-	UBRR1 = UBRR;
-	UCSR1B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
-	UCSR1C = (1 << UCSZ0) | (1 << UCSZ1);
+	UCSR1B |= UCSR1B_ENABLED;
 }
 
 void disable_usart()
 {
-	UBRR1 = 0;
-	UCSR1B = 0;
-	UCSR1C = 0;
+	UCSR1B &= ~UCSR1B_ENABLED;
 }
 
 void transmit(const char data)
@@ -52,17 +59,43 @@ void handleCommand(const char * data)
 	{
 		transmit("pong\n");
 	}
-	// Song 1
-	else if(strcmp(data, "song1") == 0)
+	else if(strcmp(data, "scale") == 0)
 	{
-		transmit("Playing song 1...\n");
-		transmit("Played song 1!\n");
+		transmit("Playing a C major scale!\n");
+		play_scale();
+		transmit("Done playing!\n");
+	}
+	// Song 1
+	else if(strncmp(data, "ode", 3) == 0 && strlen(data) >= 7)
+	{
+		char cbpm [3] = {0};
+		int ibpm = 0;
+
+		for(int i = 0; i < 3; i++)
+		{
+			cbpm[i] = data[i + 4];
+		}
+		
+		ibpm = (100 * (cbpm[0] - 48)) + (10 * (cbpm[1] - 48)) + cbpm[2];
+		transmit("Playing Ode to Joy\n");
+		play_ode(ibpm);
+		transmit("Played Ode to Joy\n");
 	}
 	// Song 2
-	else if(strcmp(data, "song2") == 0)
+	else if(strncmp(data, "jingle", 5) == 0)
 	{
-		transmit("Playing song 2...\n");
-		transmit("Played song 2!\n");
+		if(strlen(data) < 7)
+		{
+			transmit("Playing Jingle Bells\n");
+			play_jingle('5');
+			transmit("Played Jingle Bells!\n");
+		}
+		else
+		{
+			transmit("Playing Jingle Bells\n");
+			play_jingle(data[7]);
+			transmit("Played Jingle Bells!\n");
+		};
 	}
 	// Help response
 	else
@@ -77,10 +110,11 @@ void handleCommand(const char * data)
 		
 		transmit(
 		"Available commands are:\n"
-		"ping  - responds\n"
-		"song1 - plays song 1\n"
-		"song2 - plays song 2\n"
-		"help  - displays this text\n"
+		"ping      - responds\n"
+		"scale     - plays a scale\n"
+		"ode <bpm> - plays Ode to Joy\n"
+		"jingle    - plays Jingle Bells\n"
+		"help      - displays this text\n"
 		);
 	}
 }
@@ -100,7 +134,9 @@ ISR(USART1_RX_vect)
 		char * const newline = strstr(buffer, "\r\n");
 		*newline = '\0';
 		
+		sei();
 		handleCommand(buffer);
+		cli();
 		
 		// Clear
 		strcpy(buffer, "");

@@ -7,6 +7,8 @@
 #define UBRR ((FOSC / (16 * BAUD)) - 1)
 #define BUFFER_SIZE 512 // Command buffer capacity
 
+void init_usart();
+
 void enable_usart();
 
 void disable_usart();
