@@ -15,4 +15,6 @@
 
 void play_ode(int bpm);
 
+void play_scale();
+
 #endif //__PRESETS_H__

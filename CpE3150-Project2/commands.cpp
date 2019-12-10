@@ -56,11 +56,15 @@ void handleCommand(const char * data)
 	{
 		transmit("pong\n");
 	}
+	else if(strcmp(data, "scale") == 0)
+	{
+		transmit("Playing a C major scale!\n");
+		play_scale();
+		transmit("Done playing!\n");
+	}
 	// Song 1
 	else if(strncmp(data, "ode", 3) == 0)
 	{
-		
-
 		for(int i = 0; i < 3; i++)
 		{
 			cbpm[i] = data[i + 4];
