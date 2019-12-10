@@ -8,23 +8,17 @@
 
 void init_leds()
 {
-	DDRD |= 0b00111111;
-	DDRE |= (1 << PORTE5);
-	
-	PORTD |= 0b00111111;
-	PORTE |= (1 << PORTE5);
+	DDRD |= 0xFF;
+	PORTD |= 0xFF;
 }
 
 void toggle_led(char note)
 {
 	switch (note)
 	{
-		case 'G':
-		PORTE ^= (1 << PORTE5);
-		break;
-		
 		case 'C':
 		PORTD ^= (1 << PORTD0);
+		PORTD ^= (1 << PORTD7);
 		break;
 		
 		case 'D':
@@ -39,14 +33,16 @@ void toggle_led(char note)
 		PORTD ^= (1 << PORTD3);
 		break;
 		
-		case 'A':
+		case 'G':
 		PORTD ^= (1 << PORTD4);
 		break;
 		
-		case 'B':
+		case 'A':
 		PORTD ^= (1 << PORTD5);
 		break;
+		
+		case 'B':
+		PORTD ^= (1 << PORTD6);
+		break;
 	}
-	
-	PORTE |= (1 << PORTE5);
 }

@@ -9,6 +9,7 @@
 #include "play_note.h"
 #include "note.h"
 #include "led.h"
+#include "commands.h"
 
 #define CPU_FREQ 16000000
 
@@ -83,12 +84,16 @@ void play_note(const char note_name[3], int counts, int cpb, int bpm)
 
 void play_note(note note, int counts, int cpb, int bpm)
 {
+	disable_usart();
+	
 	// Toggle LED
 	toggle_led(note.get_note_letter());
 	play_note(note.get_frequency(), counts, cpb, bpm);
 
 	// Toggle LED
 	toggle_led(note.get_note_letter());
+	
+	enable_usart();
 }
 
 void play_note(float freq, int counts, int cpb, int bpm)
