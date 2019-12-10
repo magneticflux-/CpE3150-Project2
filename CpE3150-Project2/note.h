@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string.h>
+#include <inttypes.h>
 
 #define ROOT_0 1
 #define ROOT_1 1.059463094359295264561825294946341700779204317494185628559

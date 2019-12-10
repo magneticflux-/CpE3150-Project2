@@ -11,6 +11,7 @@
 #include "note.h"
 #include "play_note.h"
 #include "led.h"
+#include "keyboard.h"
 
 const static note C("C5");
 const static note D("D5");
@@ -57,5 +58,6 @@ int main(void)
 
 	while (true)
 	{
+		keyboard();
 	}
 }
