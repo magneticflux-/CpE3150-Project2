@@ -18,7 +18,7 @@
 void init_sound()
 {
 	// Enable speaker
-	DDRE |= (1 << PORTE4);
+	DDRE |= (1 << DDRE4);
 }
 
 void delay(int counts, int cpb, int bpm)

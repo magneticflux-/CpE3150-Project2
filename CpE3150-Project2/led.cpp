@@ -10,6 +10,9 @@ void init_leds()
 {
 	DDRD |= 0b00111111;
 	DDRE |= (1 << PORTE5);
+	
+	PORTD |= 0b00111111;
+	PORTE |= (1 << PORTE5);
 }
 
 void toggle_led(char note)
@@ -44,4 +47,6 @@ void toggle_led(char note)
 		PORTD ^= (1 << PORTD5);
 		break;
 	}
+	
+	PORTE |= (1 << PORTE5);
 }
