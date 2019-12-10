@@ -10,39 +10,44 @@
 #include "commands.h"
 #include "note.h"
 #include "play_note.h"
+#include "led.h"
 #include "common_notes.h"
 
 
-void initInterrupts()
+void init_interrupts()
 {
 	sei();
 }
 
 int main(void)
 {
-	initUSART();
+	enable_usart();
 	
-	initSound();
+	init_sound();
 	
-	initInterrupts();
+	init_leds();
 
-	//play_note("C5", 4);
-	//play_note("D5", 4);
-	//play_note("E5", 4);
-	//play_note("F5", 4);
-	//play_note("G5", 4);
-	//play_note("A5", 4);
-	//play_note("B5", 4);
-	//play_note("C6", 4);
-	//play_note("D6", 4);
-	//play_note("C6", 4);
-	//play_note("B5", 4);
-	//play_note("A5", 4);
-	//play_note("G5", 4);
-	//play_note("F5", 4);
-	//play_note("E5", 4);
-	//play_note("D5", 4);
-	//play_note("C5", 4 + 16);
+	init_interrupts();
+	
+	#define MIN_COUNTS 8
+	
+	play_note("C5", MIN_COUNTS);
+	play_note("D5", MIN_COUNTS);
+	play_note("E5", MIN_COUNTS);
+	play_note("F5", MIN_COUNTS);
+	play_note("G5", MIN_COUNTS);
+	play_note("A5", MIN_COUNTS);
+	play_note("B5", MIN_COUNTS);
+	play_note("C6", MIN_COUNTS);
+	play_note("D6", MIN_COUNTS);
+	play_note("C6", MIN_COUNTS);
+	play_note("B5", MIN_COUNTS);
+	play_note("A5", MIN_COUNTS);
+	play_note("G5", MIN_COUNTS);
+	play_note("F5", MIN_COUNTS);
+	play_note("E5", MIN_COUNTS);
+	play_note("D5", MIN_COUNTS);
+	play_note("C5", MIN_COUNTS * 5);
 
 	while (true)
 	{

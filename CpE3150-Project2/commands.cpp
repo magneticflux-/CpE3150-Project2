@@ -3,11 +3,18 @@
 #include "commands.h"
 #include "presets.h"
 
-void initUSART()
+void enable_usart()
 {
 	UBRR1 = UBRR;
 	UCSR1B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
 	UCSR1C = (1 << UCSZ0) | (1 << UCSZ1);
+}
+
+void disable_usart()
+{
+	UBRR1 = 0;
+	UCSR1B = 0;
+	UCSR1C = 0;
 }
 
 void transmit(const char data)
