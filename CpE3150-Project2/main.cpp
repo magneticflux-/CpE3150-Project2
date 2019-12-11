@@ -14,7 +14,6 @@
 #include "keyboard.h"
 #include "common_notes.h"
 
-
 void init_interrupts()
 {
 	sei();

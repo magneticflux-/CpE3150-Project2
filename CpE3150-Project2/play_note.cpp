@@ -101,7 +101,7 @@ void play_note(float freq, int counts, int cpb, int bpm)
 	counts *= 3;
 	cpb *= 3;
 	
-	start_note(freq, 1 / 2.0);
+	start_note(freq, 1 / 64.0);
 	
 	delay(counts - 1, cpb, bpm);
 	
