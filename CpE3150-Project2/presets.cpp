@@ -193,3 +193,153 @@ void play_scale()
 	play_note("C5", MIN_COUNTS * 5);
 }
 
+void vamp_a()
+{
+	play_note("D6", 4);
+	play_note("D6", 8);
+	play_note("C6", 4);
+	delay(4);
+	play_note("B5", 12 + 12);
+	
+	play_note("D5", 4 + 4);
+	play_note("E5", 4);
+	play_note("E#5", 4);
+	play_note("G5", 4);
+	play_note("A5", 12);
+	play_note("D5", 4 + 8);
+	play_note("A5", 8);
+	play_note("G5", 4);
+}
+
+void vamp_a1()
+{
+	vamp_a();
+	play_note("C6", 12 + 16);
+}
+
+void vamp_a2()
+{
+	vamp_a();
+	play_note("C5", 12 + 16);
+}
+
+void vamp_b()
+{
+	delay(8);
+	play_note("D6", 8);
+	delay(4);
+	play_note("A6", 12);
+	play_note("G#6", 4);
+	play_note("A6", 4);
+	play_note("G#6", 4);
+	play_note("E#6", 4);
+	delay(16);
+	
+	play_note("A6", 8);
+	play_note("A6", 4);
+	play_note("G#6", 4);
+	delay(4);
+	play_note("G#6", 4);
+	play_note("G6", 8);
+	play_note("A6", 8);
+	play_note("A6", 4);
+	play_note("G#6", 4);
+	delay(4);
+	play_note("G#6", 4);
+	play_note("G6", 8);
+}
+
+void vamp_c()
+{
+	play_note("C#6", 12);
+	play_note("E6", 4 + 8);
+	play_note("A#6", 8);
+	
+	play_note("A6", 12);
+	play_note("E#6", 4 + 8);
+	play_note("D6", 8);
+}
+
+void vamp_c1()
+{
+	vamp_c();
+	
+	play_note("C#6", 12);
+	play_note("E6", 4 + 8);
+	play_note("A#6", 8);
+	
+	play_note("A6", 12);
+	play_note("D6", 4);
+	delay(16);
+}
+
+void vamp_c2()
+{
+	vamp_c();
+	
+	play_note("E6", 12);
+	play_note("G6", 4 + 8);
+	play_note("A#6", 8);
+	
+	play_note("A6", 12);
+	play_note("B6", 4 + 8);
+	play_note("C#7", 8);
+}
+
+void vamp_d()
+{
+	play_note("D7", 4);
+	play_note("D7", 4);
+	play_note("D6", 4);
+	play_note("D6", 4 + 32 + 12);
+	delay(4);
+}
+
+void vamp_d1()
+{
+	vamp_d();
+	
+	play_note("A#4", 8);
+	play_note("A#4", 8);
+	
+	play_note("D5", 4);
+	play_note("E#5", 12);
+	
+	play_note("C5", 8);
+	play_note("C5", 8);
+	
+	play_note("E5", 4);
+	play_note("G5", 12);
+}
+
+void vamp_d2()
+{
+	vamp_d();
+	
+	play_note("A#4", 8);
+	play_note("A#4", 8);
+	
+	play_note("D5", 4);
+	play_note("E#5", 12);
+	
+	play_note("C5", 8);
+	play_note("G4", 8);
+	
+	play_note("A#3", 4);
+	play_note("C4", 12);
+}
+
+void vamp()
+{
+	vamp_a1();
+	vamp_a2();
+	
+	vamp_b();
+	vamp_b();
+	
+	vamp_c1();
+	vamp_c2();
+	
+	vamp_d1();
+	vamp_d2();
+}

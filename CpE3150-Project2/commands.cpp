@@ -97,6 +97,13 @@ void handleCommand(const char * data)
 			transmit("Played Jingle Bells!\n");
 		};
 	}
+	else if(strcmp(data, "vamp") == 0)
+	{
+		transmit("Playing \"Vampire Killer\"\n");
+		vamp();
+		vamp();
+		transmit("Done playing!\n");
+	}
 	// Help response
 	else
 	{
@@ -114,6 +121,7 @@ void handleCommand(const char * data)
 		"scale     - plays a scale\n"
 		"ode <bpm> - plays Ode to Joy\n"
 		"jingle    - plays Jingle Bells\n"
+		"vamp      - plays Vampire Killer\n"
 		"help      - displays this text\n"
 		);
 	}
